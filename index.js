@@ -4,6 +4,8 @@ const DEFAULT_HEADER = {
 	"Content-Type": "application/json"
 }
 const db = require("./src/database")
+const { QuestionsData } = require("./questions")
+const newQuestion = require('./src/newQuestion')
 
 const routes = {
 	"/": async (request, response) => {
@@ -12,9 +14,30 @@ const routes = {
 	},
 
 	"/questions/all:get": async (request, response) => {
-		const data = await db.generateData()
+		const data = await db.generateData
 		response.write(JSON.stringify( data ))
 		response.end()
+	},
+	"/questions/all:post": async (request, response) => {
+		for await (const data of request) {
+			try {
+				const question = JSON.parse(data)
+				const const { isValid } = newQuestion(question)
+				const { error, valid } = isValid()
+
+				if (!valid) {
+					response.writeHead(400, DEFAULT_HEADER)
+					response,write(JSON.stringify({
+						error: error.join(',')
+					}))
+					return response.end()
+				}
+
+				const 
+			} catch (error) {
+				return //
+			}
+		}
 	},
 	"404": (request, response) => {
 		response.write('404')

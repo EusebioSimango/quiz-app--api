@@ -1,11 +1,14 @@
 const { join } = require("path")
 const { QuestionsData } = require("./questions")
-const { find } = require("./questions")
 const filename = join(__dirname, "../database", "db.json")
 
 const generateData = async () => {
-	const questions = await QuestionsData(filename)
-	return questions
+	const { find, create } = await QuestionsData(filename)
+	console.log(await (find()))
+	return [find, create]
 }
 
-module.exports = { generateData }
+// module.exports = { generateData }
+
+const [ find, create ] = generateData()
+console.log(find)

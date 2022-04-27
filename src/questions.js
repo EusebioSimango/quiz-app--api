@@ -1,4 +1,4 @@
-const { readFile } = require("fs").promises
+const { readFile, writeFile } = require("fs").promises
 
 const QuestionsData = file => {
 
@@ -10,7 +10,16 @@ const QuestionsData = file => {
 		return data
 	}
 
-	return find() 
+	const create = async (data) => {
+		const currentData = await _dbFileContent()
+		currentData.push(data)
+
+		await writeFile(file, JSON.stringify(currentData))
+
+		return
+	}
+
+	return { find, create }
 }
 
 module.exports = { QuestionsData }
