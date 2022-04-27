@@ -16,7 +16,7 @@ const QuestionsData = file => {
 
 		await writeFile(file, JSON.stringify(currentData))
 
-		return
+		return create
 	}
 
 	return { find, create }
