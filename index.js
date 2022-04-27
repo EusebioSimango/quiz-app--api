@@ -14,7 +14,8 @@ const routes = {
 	},
 
 	"/questions/all:get": async (request, response) => {
-		const data = await db.generateData
+		const { find } = await db.generateData()
+		const data = await find()
 		response.write(JSON.stringify( data ))
 		response.end()
 	},
