@@ -18,5 +18,4 @@ const newQuestion =
 
 }
 
-const {isValid} = newQuestion({question: 'aa',  b: 'b', c: 'c', d: 'd', rightAnswer: 'c'})
-console.log(isValid())
+module.exports = { newQuestion }
