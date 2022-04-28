@@ -1,1 +1,22 @@
-[{"question":"whats 1 + 1","a":2,"b":4,"c":3,"d":5,"rightAnswer":"a"},{"question":"whats 12 + 1","a":2,"b":4,"c":13,"d":5,"rightAnswer":"c"},{"question":"Qual dos nomes abaixo e de um dos criadores do Facebook Inc. agora META","a":"Ellon Musk","b":"Mark Zuckerberg","c":"Bill Gates","d":"Jeff Bazzos","rightAnswer":"b"},{"question":"eu?","a":"v","b":"B","c":3,"d":50,"rightAnswer":"b"},{"question":"eu?","a":"v","b":"B","c":3,"d":50,"rightAnswer":"b"},{"question":"eu?","a":"v","b":"B","c":3,"d":50,"rightAnswer":"b"},{"question":"eu?","a":"v","b":"B","c":3,"d":50,"rightAnswer":"b"},{"question":"eu?","a":"v","b":"B","c":3,"d":50,"rightAnswer":"b"},{"question":"eu?","a":"v","b":"B","c":3,"d":50,"rightAnswer":"b"},{"question":"eu?","a":"v","b":"B","c":3,"d":50,"rightAnswer":"b"}]
+[{
+	"question": "whats 1 + 1",
+	"a": 2,
+	"b": 4,
+	"c": 3,
+	"d": 5,
+	"rightAnswer": "a"
+}, {
+	"question": "whats 12 + 1",
+	"a": 2,
+	"b": 4,
+	"c": 13,
+	"d": 5,
+	"rightAnswer": "c"
+}, {
+	"question": "Qual dos nomes abaixo e de um dos criadores do Facebook Inc. agora META",
+	"a": "Ellon Musk",
+	"b": "Mark Zuckerberg",
+	"c": "Bill Gates",
+	"d": "Jeff Bazzos",
+	"rightAnswer": "b"
+}]
