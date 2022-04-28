@@ -4,8 +4,8 @@ const DEFAULT_HEADER = {
 	"Content-Type": "application/json"
 }
 const db = require("./src/database")
-const { QuestionsData } = require("./questions")
-const newQuestion = require('./src/newQuestion')
+const { QuestionsData } = require("./src/questions")
+const {newQuestion} = require('./src/newQuestion')
 
 const routes = {
 	"/": async (request, response) => {
@@ -23,7 +23,8 @@ const routes = {
 		for await (const data of request) {
 			try {
 				const question = JSON.parse(data)
-				const const { isValid } = newQuestion(question)
+				const { isValid } = newQuestion(question)
+				console.log(question)
 				const { error, valid } = isValid()
 
 				if (!valid) {
@@ -34,9 +35,18 @@ const routes = {
 					return response.end()
 				}
 
-				const 
-			} catch (error) {
-				return //
+				const { create } = await db.generateData()
+				await create(question)
+				response.writeHead(201, DEFAULT_HEADER)
+				response.write(JSON.stringify({
+					sucess: 'Question added sucessfully!!'
+				}))
+
+				return response.end()
+				
+			} 
+			catch (error) {
+				return handlerError(response)(error)
 			}
 		}
 	},
@@ -48,6 +58,16 @@ const routes = {
 
 }
 
+const handlerError = response => {
+	return error => {
+		console.log('Deu Ruim', error)
+		response.writeHead(500,DEFAULT_HEADER)
+		response.write(JSON.stringify({
+			error: 'Internal Server Error!!'
+		}))
+		response.end()
+	}
+}
 
 const handler = (request, response) => {
 
