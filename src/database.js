@@ -10,10 +10,3 @@ const generateData = async () => {
 }
 
 module.exports = { generateData }
-
-async function func() {
-	const { find, create } = await generateData()
-	console.log(find, create)
-}
-
-func()

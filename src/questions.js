@@ -6,7 +6,6 @@ const QuestionsData = file => {
 
 	const find = async () => {
 		const data = await _dbFileContent()
-		// console.log(data)
 		return data
 	}
 

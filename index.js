@@ -24,7 +24,6 @@ const routes = {
 			try {
 				const question = JSON.parse(data)
 				const { isValid } = newQuestion(question)
-				console.log(question)
 				const { error, valid } = isValid()
 
 				if (!valid) {
