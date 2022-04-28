@@ -28,7 +28,7 @@ const routes = {
 
 				if (!valid) {
 					response.writeHead(400, DEFAULT_HEADER)
-					response,write(JSON.stringify({
+					response.write(JSON.stringify({
 						error: error.join(',')
 					}))
 					return response.end()
