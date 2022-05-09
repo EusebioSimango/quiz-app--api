@@ -1,11 +1,24 @@
 const HTTP = require("http")
-const PORT = 8080
+const PORT = 3333
 const DEFAULT_HEADER = {
 	"Content-Type": "application/json"
 }
-const db = [
-{}
-]
+const db = [{
+	"question": "Qual dos nomes abaixo é de um dos criadores do Facebook Inc. agora META",
+	"a": "Ellon Musk",
+	"b": "Mark Zuckerberg",
+	"c": "Bill Gates",
+	"d": "Jeff Bazzos",
+	"rightAnswer": "b"
+},
+{
+	"question": "Qual dos nomes abaixo é do criador do JavaScript",
+	"a": "Mayk Brito",
+	"b": "Brendan Eich",
+	"c": "Bill Gates",
+	"d": "Steve Jobs",
+	"rightAnswer": "b"
+}]
 
 const routes = {
 	"/": async (request, response) => {
@@ -14,37 +27,37 @@ const routes = {
 	},
 
 	"/questions/all:get": async (request, response) => {
-		const { find } = await db.generateData()
-		const data = await find()
+		const data = db
 		response.write(JSON.stringify( data ))
 		response.end()
 	},
 	"/questions/all:post": async (request, response) => {
 		for await (const data of request) {
 			try {
-				const question = JSON.parse(data)
-				const { isValid } = newQuestion(question)
-				const { error, valid } = isValid()
-
-				if (!valid) {
-					response.writeHead(400, DEFAULT_HEADER)
+				const question      = JSON.parse(data)
+				const isQuestion    = (!!question.question)
+				const isOptions     = (!!question.a && !!question.b && !!question.c && !!question.c)
+				const isRightOption = (!!question.rightAnswer)
+				
+				if (isQuestion && isOptions && isRightOption) {
+					db.push(question)
+					response.writeHead(201, DEFAULT_HEADER)
 					response.write(JSON.stringify({
-						error: error.join(',')
+						sucess: 'Question added sucessfully!!'
 					}))
+
 					return response.end()
 				}
-
-				const { create } = await db.generateData()
-				await create(question)
+				
 				response.writeHead(201, DEFAULT_HEADER)
 				response.write(JSON.stringify({
-					sucess: 'Question added sucessfully!!'
+					error: 'Missing anything!!'
 				}))
 
 				return response.end()
 				
-			} 
-			catch (error) {
+				
+			} catch (error) {
 				return handlerError(response)(error)
 			}
 		}
