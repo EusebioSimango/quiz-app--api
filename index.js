@@ -3,9 +3,9 @@ const PORT = 8080
 const DEFAULT_HEADER = {
 	"Content-Type": "application/json"
 }
-const db = require("./src/database")
-const { QuestionsData } = require("./src/questions")
-const {newQuestion} = require('./src/newQuestion')
+const db = [
+{}
+]
 
 const routes = {
 	"/": async (request, response) => {

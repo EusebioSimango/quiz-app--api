@@ -7,6 +7,7 @@ yarn-error.log*
 
 #DEV
 teste.html
+database/db.json
 # Runtime data
 pids
 *.pid
