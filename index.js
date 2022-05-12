@@ -25,8 +25,7 @@ const db = [{
 
 //routes 
 app.get('/', (request, response) => {
-	response.send('API MADE BY EUSEBIO SIMANGO')
-	response.end()
+	response.status(200).send('API MADE BY EUSEBIO SIMANGO')
 })
 
 // const routes = {
