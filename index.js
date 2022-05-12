@@ -93,6 +93,10 @@ const handler = (request, response) => {
 	console.log(key)
 	const chosen = routes[key] ? routes[key] : routes["404"] 
 
+	request.setHeader('Access-Control-Allow-Origin', '*')
+	request.setHeader('Access-Control-Request-Method', '*')
+	request.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET')
+	request.setHeader('Access-Control-Allow-Headers', '*')	
 	response.setHeader('Access-Control-Allow-Origin', '*')
 	response.setHeader('Access-Control-Request-Method', '*')
 	response.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET')
