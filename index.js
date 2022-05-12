@@ -35,6 +35,36 @@ app.get('/questions/all', (request, response) => {
 	response.status(200).json(JSON.stringify(data))
 })
 
+app.post('/questions/all', async (request, response) => {
+	for await (const data of request) {
+		try {
+			const question = JSON.parse(data)
+			const isQuestion = (!!question.question)
+			const isOptions = (!!question.a && !!question.b && !!question.c && !!question.c)
+			const isRightOption = (!!question.rightAnswer)
+
+			if (isQuestion && isOptions && isRightOption) {
+				db.push(question)
+				response.status(201).json(JSON.stringify({
+					sucess: 'Question added sucessfully!!'
+				}))
+
+				return
+			}
+
+			response.json(JSON.stringify({
+				error: 'Missing anything!!'
+			}))
+
+			// return response.end()
+
+
+		} catch (error) {
+			return console.error("Error:", error)
+		}
+	}
+})
+
 // const routes = {
 // 	"/questions/all:post": async (request, response) => {
 // 		for await (const data of request) {

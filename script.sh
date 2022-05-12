@@ -1,6 +1,6 @@
 echo 'ADDING NEW QUESTION'
 CREATE=$(curl --silent -X POST --data-binary \
-'{"question":"eu?", "b":"B", "c":3,"d":50, "rightAnswer":"b"}' \
+'{"question":"eu?","a":"A", "b":"B", "c":3,"d":50, "rightAnswer":"b"}' \
  localhost:3333/questions/all)
 
 echo $CREATE
