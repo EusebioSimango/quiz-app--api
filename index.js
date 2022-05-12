@@ -56,65 +56,19 @@ app.post('/questions/all', async (request, response) => {
 				error: 'Missing anything!!'
 			}))
 
-			// return response.end()
+			return response.end()
 
 
 		} catch (error) {
-			return console.error("Error:", error)
+			response.status(500)
+			response.json(JSON.stringify({
+				Error: 'Internal Server Error!!',
+				ErrorType: error
+			}))
+			return response.end()
 		}
 	}
 })
-
-// const routes = {
-// 	"/questions/all:post": async (request, response) => {
-// 		for await (const data of request) {
-// 			try {
-// 				const question = JSON.parse(data)
-// 				const isQuestion = (!!question.question)
-// 				const isOptions = (!!question.a && !!question.b && !!question.c && !!question.c)
-// 				const isRightOption = (!!question.rightAnswer)
-
-// 				if (isQuestion && isOptions && isRightOption) {
-// 					db.push(question)
-// 					response.writeHead(201, DEFAULT_HEADER)
-// 					response.write(JSON.stringify({
-// 						sucess: 'Question added sucessfully!!'
-// 					}))
-
-// 					return response.end()
-// 				}
-
-// 				response.writeHead(201, DEFAULT_HEADER)
-// 				response.write(JSON.stringify({
-// 					error: 'Missing anything!!'
-// 				}))
-
-// 				return response.end()
-
-
-// 			} catch (error) {
-// 				return handlerError(response)(error)
-// 			}
-// 		}
-// 	},
-// 	"404": (request, response) => {
-// 		response.write('404')
-// 		response.end()
-// 	}
-
-
-// }
-
-// const handlerError = response => {
-// 	return error => {
-// 		console.log('Deu Ruim', error)
-// 		response.writeHead(500, DEFAULT_HEADER)
-// 		response.write(JSON.stringify({
-// 			error: 'Internal Server Error!!'
-// 		}))
-// 		response.end()
-// 	}
-// }
 
 
 app.listen(PORT, () => console.log('Server runing at port:', PORT))
