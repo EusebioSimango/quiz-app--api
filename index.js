@@ -1,7 +1,5 @@
 const express = require('express')
 const cors = require('cors')
-const { request } = require('http')
-const { response } = require('express')
 const PORT = 3333
 
 const app = express()
@@ -32,7 +30,8 @@ app.get('/', (request, response) => {
 
 app.get('/questions/all', (request, response) => {
 	const data = db
-	response.status(200).json(JSON.stringify(data))
+	console.log(JSON.stringify(data))
+	response.status(200).send(JSON.stringify(data))
 })
 
 app.post('/questions/all', async (request, response) => {
@@ -45,14 +44,14 @@ app.post('/questions/all', async (request, response) => {
 
 			if (isQuestion && isOptions && isRightOption) {
 				db.push(question)
-				response.status(201).json(JSON.stringify({
+				response.status(201).send(JSON.stringify({
 					sucess: 'Question added sucessfully!!'
 				}))
 
 				return
 			}
 
-			response.json(JSON.stringify({
+			response.send(JSON.stringify({
 				error: 'Missing anything!!'
 			}))
 
@@ -61,7 +60,7 @@ app.post('/questions/all', async (request, response) => {
 
 		} catch (error) {
 			response.status(500)
-			response.json(JSON.stringify({
+			response.send(JSON.stringify({
 				Error: 'Internal Server Error!!',
 				ErrorType: error
 			}))
@@ -70,5 +69,16 @@ app.post('/questions/all', async (request, response) => {
 	}
 })
 
+const notFounded = (request, response) => {
+	response.status(404).send({ "error": "Not Founded" })
+}
+
+app.get('*', (request, response) => {
+	notFounded(request, response)
+})
+
+app.post('*', (request, response) => {
+	notFounded(request, response)
+})
 
 app.listen(PORT, () => console.log('Server runing at port:', PORT))
