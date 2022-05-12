@@ -1,5 +1,7 @@
 const express = require('express')
 const cors = require('cors')
+const { request } = require('http')
+const { response } = require('express')
 const PORT = 3333
 
 const app = express()
@@ -28,17 +30,12 @@ app.get('/', (request, response) => {
 	response.status(200).send('API MADE BY EUSEBIO SIMANGO')
 })
 
-// const routes = {
-// 	"/": async (request, response) => {
-// 		response.write('API MADE BY EUSEBIO SIMANGO')
-// 		response.end()
-// 	},
+app.get('/questions/all', (request, response) => {
+	const data = db
+	response.status(200).json(JSON.stringify(data))
+})
 
-// 	"/questions/all:get": async (request, response) => {
-// 		const data = db
-// 		response.write(JSON.stringify(data))
-// 		response.end()
-// 	},
+// const routes = {
 // 	"/questions/all:post": async (request, response) => {
 // 		for await (const data of request) {
 // 			try {
