@@ -1,6 +1,5 @@
 import express from 'express'
-
-export const routes = express.Router()
+const routes = express.Router()
 
 const db = [{
   "question": "Qual dos nomes abaixo é de um dos criadores do Facebook Inc. agora META",
@@ -75,3 +74,5 @@ routes.get('*', (request, response) => {
 routes.post('*', (request, response) => {
   notFounded(request, response)
 })
+
+export default routes 
