@@ -1,7 +1,14 @@
 {
   "cleanUrls": true,
-  "redirects": [
-    { "source": "/*", "destination": "./src/server.js" },
-    { "source": "/view-source", "destination": "https://github.com/EusebioSimango/quiz-app--api" }
+  "trailingSlash": false,
+   "rewrites":  [
+      {
+        "source": "/(.*)", 
+        "destination": "./src/server.js" 
+      },
+      { 
+        "source": "/view-source", 
+        "destination": "https://github.com/EusebioSimango/quiz-app--api"
+      }
   ]
 }
