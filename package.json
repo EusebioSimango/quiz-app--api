@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "this repo contains the api to a simple quiz-app i've made!",
   "type": "module",
-  "main": "./src/server.js",
+  "main": "server.js",
   "scripts": {
     "test": "sh script.sh",
-    "start": "node ./src/server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
