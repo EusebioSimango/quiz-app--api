@@ -1,25 +1,29 @@
-{ 
+{
   "version": 2,
   "builds": [
     {
       "src": "server.js",
       "use": "@vercel/node"
     }
-  ]
-  "cleanUrls": true,
-  "trailingSlash": false,
-   "rewrites":  [
-      {
-        "source": "/(.*)", 
-        "destination": "server.js" 
-      },
-     {
-        "source": "/questions/all", 
-        "destination": "server.js" 
-      },
-      { 
-        "source": "/view-source", 
-        "destination": "https://github.com/EusebioSimango/quiz-app--api"
+  ],
+  "routes": [
+    {
+      "src": "/.*",
+      "dest": "server.js",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "src": "/.*",
+      "dest": "server.js",
+      "methods": [
+        "POST"
+      ]
+    },
+    { 
+        "src": "/view-source", 
+        "dest": "https://github.com/EusebioSimango/quiz-app--api"
       }
   ]
 }
