@@ -4,11 +4,11 @@
    "rewrites":  [
       {
         "source": "/(.*)", 
-        "destination": "/src/server.js" 
+        "destination": "server.js" 
       },
      {
         "source": "/questions/all", 
-        "destination": "/src/server.js" 
+        "destination": "server.js" 
       },
       { 
         "source": "/view-source", 
