@@ -5,7 +5,10 @@ const routes =  require('./routes.js')
 const PORT = 3333
 
 const app = express()
-app.use(cors({ origin: "https://devs-quiz-app.vercel.app" }))
+app.use(cors({ 
+ origin: "*",
+ methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}))
  
 app.use(routes)
 
