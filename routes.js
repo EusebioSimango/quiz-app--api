@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 const routes = express.Router()
 
 const db = [{
@@ -28,7 +29,7 @@ routes.get('/questions/all', (request, response) => {
   response.status(200).send(JSON.stringify(data))
 })
 
-routes.post('/questions/all', async (request, response) => {
+routes.post('/questions/all', cors(), async (request, response) => {
   for await (const data of request) {
     try {
       const question = JSON.parse(data)
